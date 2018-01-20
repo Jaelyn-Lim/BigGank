@@ -1,0 +1,44 @@
+{% extends 'commonBase.html' %}
+{% block title %}
+    用户中心
+{% endblock %}
+
+{% block header %}
+    用户中心
+{% endblock %}
+
+{% block content %}
+    <div data-role='collapsible-set'>
+
+        {% if current_user.is_authenticated %}
+
+            <table border="0">
+                <tbody>
+                <tr>
+                    <td class="tdHead">用户名：</td>
+                    <td class="tdText">{{ current_user.username }}</td>
+                </tr>
+                <tr>
+                    <td class="tdHead">邮箱：</td>
+                    <td class="tdText">{{ current_user.email }}</td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <a href="{{ url_for('useredit') }}"
+                           data-role="button" data-icon="edit"
+                           data-inline="true" data-ajax="false">修改密码</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        {% else %}
+            <a href="{{ url_for('login') }}" data-ajax="false">请登录</a>
+        {% endif %}
+
+
+
+        <br/>
+    </div>
+{% endblock %}
+

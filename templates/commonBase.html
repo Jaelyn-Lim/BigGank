@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/jquery.mobile.flatui.css') }}"/>
+    <script src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.mobile-1.4.0-rc.1.js') }}"></script>
+    {% block script %}{% endblock %}
+</head>
+<body>
+
+<div data-role="page" id="base" data-theme="f">
+
+    <!--header beging-->
+
+    <div data-role="header" data-position="fixed">
+        <a href="{{ url_for('index') }}" data-iconpos="notext" data-icon="arrow-l"></a>
+        <h1>{% block header %}{% endblock %}</h1>
+    </div>
+
+    <!--header ending-->
+
+    <!--content beging-->
+
+    <div data-role="content">
+        <div role="main" class="ui-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!--content ending-->
+
+</div>
+
+</body>
+</html>

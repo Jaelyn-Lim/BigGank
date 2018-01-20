@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/jquery.mobile.flatui.css') }}"/>
+    <script src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.mobile-1.4.0-rc.1.js') }}"></script>
+    {% block script %}{% endblock %}
+</head>
+<body>
+<div data-role="page" id="base" data-theme="f">
+
+    <!--header beging-->
+
+    <div data-role="header" data-position="fixed">
+        <a href="#PanelLeft" data-iconpos="notext" data-icon="bars"></a>
+        <h1>{% block header %}{% endblock %}</h1>
+        <a href="#PanelRight" data-iconpos="notext" data-icon="user"></a>
+    </div>
+
+    <!--header ending-->
+
+    <!--content beging-->
+
+    <div data-role="content">
+        <div role="main" class="ui-content">
+            <div align="center">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!--content ending-->
+
+    <!--footer beging-->
+
+    <div data-role="footer" data-position="fixed">
+        <h4>Jaelylim.com</h4>
+    </div>
+
+    <!--footer ending-->
+
+    <!--PanelLeft beging-->
+
+    <div data-role="panel" id="PanelLeft" data-display="overlay">
+
+        <div style="margin:10px 0 20px 0; text-align:center;">内容选择</div>
+        <div>
+            <ul data-role="listview" data-inset="true">
+                <li><a href="{{ url_for('index', typy='all') }}">All</a></li>
+                <li><a href="{{ url_for('index', typy='ios') }}">iOS</a></li>
+                <li><a href="{{ url_for('index', typy='android') }}">Android</a></li>
+                <li><a href="{{ url_for('index', typy='qianduan') }}">前端</a></li>
+                <li><a href="{{ url_for('index', typy='tuozhang') }}">拓展资源</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--PanelLeft ending-->
+
+    <!--PanelRight beging-->
+
+    <div data-role="panel" id="PanelRight" data-display="overlay" data-position="right">
+
+
+        <div id="divHead" style="margin:10px 0 20px 0; text-align:center;">
+            用户功能
+        </div>
+
+        {% block PanelRight %}{% endblock %}
+
+    </div>
+
+    <!--PanelRight ending-->
+
+</div>
+
+
+</body>
+</html>

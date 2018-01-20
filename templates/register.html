@@ -1,0 +1,42 @@
+{% extends 'commonBase.html' %}
+{% block title %}
+    注册
+{% endblock %}
+
+{% block header %}
+    用户注册
+{% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('register') }}" method="post">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }} </li>
+                    {% endfor %}
+                </ul>
+                <hr/>
+            {% endif %}
+        {% endwith %}
+        {{ form.csrf_token }}
+        {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}<br>
+        {{ form.email.label }}{{ form.email }}
+        {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}<br>
+        {{ form.username.label }}{{ form.username }}
+        {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}<br>
+        {{ form.password.label }}{{ form.password }}
+        {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}<br>
+        {{ form.password2.label }}{{ form.password2 }}
+        {{ form.submit }}
+    </form>
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends 'commonBase.html' %}
+{% block title %}
+    登录
+{% endblock %}
+
+{% block header %}
+    用户登录
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{ url_for('login') }}" method="post">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }} </li>
+                    {% endfor %}
+                </ul>
+                <hr/>
+            {% endif %}
+        {% endwith %}
+        {{ form.csrf_token }}
+        {{ form.email.label }}{{ form.email }}
+        {{ form.username.label }}{{ form.username }}
+        {{ form.password.label }}{{ form.password }}
+        {{ form.remeber }}{{ form.remeber.label }}
+        {{ form.submit }}
+    </form>
+{% endblock %}
+

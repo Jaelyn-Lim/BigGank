@@ -1,0 +1,51 @@
+{% extends 'indexBase.html' %}
+
+{% block title %}
+    {{ texttype }}
+{% endblock %}
+
+{% block header %}
+    {{ texttype }}
+{% endblock %}
+
+{% block content %}
+    <div align="content">
+        <ul data-role="listview">
+            {% for info in infos %}
+                <li></li>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><span>{{ info.typy }}</span></div>
+                    <div class="ui-block-b"><span>{{ info.who }}</span></div>
+                    <div class="ui-block-c"><span><a href="{{ url_for('delete', id = info.id) }}">删除</a></span></div>
+                </div>
+                <br>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><span>{{ info.desc }}</span></div>
+                    <div class="ui-block-b"><span>{{ info.createdAt }}</span></div>
+                    <div class="ui-block-c"><a href="{{ info.url }}">查看更多</a></div>
+                </div>
+                <br>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block PanelRight %}
+    {% if current_user.is_authenticated %}
+        <ul data-role="listview" data-inset="true">
+            <li>{{ current_user.username }}</li>
+            <li data-role="list-divider"></li>
+            <li>{{ current_user.email }}</li>
+            <li><a href="{{ url_for('usercenter') }}">用户中心</a></li>
+            <li><a href="{{ url_for('logout') }}">登出</a></li>
+        </ul>
+    {% else %}
+        <ul data-role="listview" data-inset="true">
+            <li><a href="{{ url_for('register') }}" data-ajax="false">注册</a></li>
+            <li data-role="list-divider"></li>
+            <li><a href="{{ url_for('login') }}" data-ajax="false">登录</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
